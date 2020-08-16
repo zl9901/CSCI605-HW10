@@ -1,0 +1,26 @@
+import java.util.*;
+/**
+ * 
+ * @author Liu Zhuo
+ *从头到尾只有一个String o，所以只有一把钥匙
+ */
+public class T_6 extends Thread    {
+    String o = " ";
+    int id;
+
+    public T_6(int id)	{
+    	this.id = id;
+    }
+    public void run () {
+        synchronized ( o ) { 
+            System.err.println(id + " --->" );
+            System.err.println(id + " <---" );
+        }
+    }
+
+    public static void main (String args []) {
+        new T_6(1).start();
+        new T_6(2).start();
+        new T_6(3).start();
+    }
+}

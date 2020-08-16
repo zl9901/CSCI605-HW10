@@ -1,0 +1,33 @@
+
+import java.util.*;
+/**
+ * 
+ * @author Liu Zhuo
+ *每次都new 一个obj，相当于三把不同的锁
+ */
+public class T_7 extends Thread    {
+    static Object o = new Object();
+    static int    counter = 0;
+    int id;
+
+    public T_7(int id)	{
+	this.id = id;
+    }
+    public void run () {
+	if ( ++counter == 1 )
+		o = new Object();
+	else
+		o = new Object();
+	
+        synchronized ( o ) { 
+            System.err.println(id + " --->" );
+            System.err.println(id + " <---" );
+        }
+    }
+
+    public static void main (String args []) {
+        new T_7(1).start();
+        new T_7(2).start();
+        new T_7(3).start();
+    }
+}
